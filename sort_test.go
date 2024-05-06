@@ -28,4 +28,8 @@ func TestSortInsertion(t *testing.T) {
 
 	sortArr = sortInsertion(intitArr)
 	require.Equal(t, sortArr, []int{1, 2})
+
+	intitArr = []int{2, 1}
+	sortArr = sortInsertion(intitArr)
+	require.Equal(t, sortArr, []int{1, 2})
 }

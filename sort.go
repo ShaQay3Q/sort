@@ -11,9 +11,18 @@ func swap(intArr []int, i, j int) []int {
 	return intArr
 }
 
+func swapAdjecent(intitArr []int, i int) []int {
+	for index := i; index > 0; index-- {
+		if intitArr[index-1] > intitArr[index] {
+			swap(intitArr, index, index-1)
+		}
+	}
+	return intitArr
+}
+
 func sortInsertion(intitArr []int) []int {
-	if intitArr[0] > intitArr[1] {
-		swap(intitArr, 1, 0)
+	for i := range intitArr {
+		swapAdjecent(intitArr, i)
 	}
 	return intitArr
 }

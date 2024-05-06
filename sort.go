@@ -4,8 +4,11 @@ func main() {
 
 }
 
-func swap(initArr []int) []int {
-	return []int{1, 2}
+func swap(intArr []int, i, j int) []int {
+	temp := intArr[i]
+	intArr[i] = intArr[j]
+	intArr[j] = temp
+	return intArr
 }
 
 func sortInsertion(intitArr []int) []int {

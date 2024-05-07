@@ -22,6 +22,23 @@ func TestSwap(t *testing.T) {
 	require.Equal(t, swapArr, []int{1, 2, 3})
 }
 
+func TestAdjCompareSwap(t *testing.T) {
+
+	intitArr := []int{1, 2}
+	var sortArr []int
+
+	sortArr = adjCompareSwap(intitArr, 1)
+	require.Equal(t, []int{1, 2}, sortArr)
+
+	intitArr = []int{2, 1}
+	sortArr = adjCompareSwap(intitArr, 1)
+	require.Equal(t, []int{1, 2}, sortArr)
+
+	intitArr = []int{3, 1}
+	sortArr = adjCompareSwap(intitArr, 1)
+	require.Equal(t, []int{1, 3}, sortArr)
+}
+
 func TestSwapAdjecent(t *testing.T) {
 	var sortArr []int
 	intitArr := []int{2, 1}

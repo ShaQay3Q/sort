@@ -21,7 +21,7 @@ func TestSwap(t *testing.T) {
 		{b: []int{3, 2, 1}, a: []int{1, 2, 3}, i: 2, j: 0},
 	}
 
-	for r, c := range cases {
+	for _, c := range cases {
 		swap(c.b, c.i, c.j)
 		require.Equal(t, c.a, c.b)
 	}
@@ -29,48 +29,48 @@ func TestSwap(t *testing.T) {
 
 func TestAdjCompareSwap(t *testing.T) {
 
-	intitArr := []int{1, 2}
-	adjCompareSwap(intitArr, 1)
-
-	require.Equal(t, []int{1, 2}, intitArr)
-
-	intitArr = []int{2, 1}
-	adjCompareSwap(intitArr, 1)
-
-	require.Equal(t, []int{1, 2}, intitArr)
-
-	intitArr = []int{3, 1}
-	adjCompareSwap(intitArr, 1)
-	require.Equal(t, []int{1, 3}, intitArr)
+	for _, c := range []struct {
+		before []int
+		after  []int
+		i      int
+	}{
+		{before: []int{1, 2}, after: []int{1, 2}, i: 1},
+		{before: []int{2, 1}, after: []int{1, 2}, i: 1},
+		{before: []int{3, 1}, after: []int{1, 3}, i: 1},
+	} {
+		adjCompareSwap(c.before, c.i)
+		require.Equal(t, c.after, c.before)
+	}
 }
 
 func TestSwapAdjecent(t *testing.T) {
-	intitArr := []int{2, 1}
 
-	swapAdjecent(intitArr, 1)
-	require.Equal(t, []int{1, 2}, intitArr)
-
-	intitArr = []int{3, 1}
-	swapAdjecent(intitArr, 1)
-	require.Equal(t, []int{1, 3}, intitArr)
-
-	intitArr = []int{1, 3, 2}
-	swapAdjecent(intitArr, 2)
-	require.Equal(t, []int{1, 2, 3}, intitArr)
+	for _, c := range []struct {
+		b []int
+		a []int
+		i int
+	}{
+		{b: []int{2, 1}, a: []int{1, 2}, i: 1},
+		{b: []int{3, 1}, a: []int{1, 3}, i: 1},
+		{b: []int{1, 3, 2}, a: []int{1, 2, 3}, i: 2},
+	} {
+		swapAdjecent(c.b, c.i)
+		require.Equal(t, c.b, c.a)
+	}
 }
 
 func TestSortInsertion(t *testing.T) {
-	intitArr := []int{1, 2}
-	var sortArr []int
 
-	sortArr = sortInsertion(intitArr)
-	require.Equal(t, sortArr, []int{1, 2})
-
-	intitArr = []int{2, 1}
-	sortArr = sortInsertion(intitArr)
-	require.Equal(t, sortArr, []int{1, 2})
-
-	intitArr = []int{3, 2, 1}
-	sortArr = sortInsertion(intitArr)
-	require.Equal(t, []int{1, 2, 3}, sortArr)
+	for _, c := range []struct {
+		b []int
+		a []int
+	}{
+		{b: []int{1, 2}, a: []int{1, 2}},
+		{b: []int{2, 1}, a: []int{1, 2}},
+		{b: []int{3, 1}, a: []int{1, 3}},
+		{b: []int{3, 2, 1}, a: []int{1, 2, 3}},
+	} {
+		sortInsertion(c.b)
+		require.Equal(t, c.b, c.a)
+	}
 }

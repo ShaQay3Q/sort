@@ -10,18 +10,21 @@ import (
 )
 
 func TestSwap(t *testing.T) {
-	var swapArr = []int{2, 1}
+	cases := []struct {
+		b []int
+		a []int
+		i int
+		j int
+	}{
+		{b: []int{2, 1}, a: []int{1, 2}, i: 1, j: 0},
+		{b: []int{3, 2}, a: []int{2, 3}, i: 1, j: 0},
+		{b: []int{3, 2, 1}, a: []int{1, 2, 3}, i: 2, j: 0},
+	}
 
-	swap(swapArr, 1, 0)
-	require.Equal(t, swapArr, []int{1, 2})
-
-	swapArr = []int{3, 2}
-	swap(swapArr, 1, 0)
-	require.Equal(t, swapArr, []int{2, 3})
-
-	swapArr = []int{3, 2, 1}
-	swap(swapArr, 0, 2)
-	require.Equal(t, swapArr, []int{1, 2, 3})
+	for r, c := range cases {
+		swap(c.b, c.i, c.j)
+		require.Equal(t, c.a, c.b)
+	}
 }
 
 func TestAdjCompareSwap(t *testing.T) {
